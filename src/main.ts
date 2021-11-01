@@ -13,7 +13,8 @@ import './styles/main.css'
 import 'virtual:windi-utilities.css'
 // windicss devtools support (dev only)
 import 'virtual:windi-devtools'
-
+// import '@unocss/reset/tailwind.css'
+// import 'uno.css'
 const routes = setupLayouts(generatedRoutes)
 
 // https://github.com/antfu/vite-ssg

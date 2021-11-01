@@ -4,7 +4,10 @@ const { t } = useI18n()
 
 <template>
   <div>
-    {{ t('not-found') }}
+    <h1>{{ t('not-found') }}</h1>
+    <router-link to="/">
+      {{ t('back-to-home') }}
+    </router-link>
   </div>
 </template>
 
