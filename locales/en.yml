@@ -1,3 +1,4 @@
+back-to-home: Back home
 button:
   about: About
   back: Back
@@ -6,11 +7,18 @@ button:
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
 intro:
+  aka: Also known as
   desc: Opinionated Vite Starter Template
   dynamic-route: Demo of dynamic route
   hi: Hi, {name}!
-  aka: Also known as
   whats-your-name: What's your name?
-not-found: Not found
 no-nfc: Not able to use NFC
-back-to-home: Back home
+not-found: Not found
+player:
+  class: Class
+  image: Image
+  name: Name
+  new: New Player
+mon:
+  type_desc: 'Type icon for'
+  moves: 'Moves'

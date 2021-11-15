@@ -3,19 +3,22 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
-import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
+// import Icons from 'unplugin-icons/vite'
+// import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Markdown from 'vite-plugin-md'
-import WindiCSS from 'vite-plugin-windicss'
+// import WindiCSS from 'vite-plugin-windicss'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Inspect from 'vite-plugin-inspect'
 import Prism from 'markdown-it-prism'
 import LinkAttributes from 'markdown-it-link-attributes'
-// import Unocss from 'unocss/vite'
-// import presetUno from '@unocss/preset-uno'
+import Unocss from 'unocss/vite'
+import { presetUno } from 'unocss'
+import presetAttributify from '@unocss/preset-attributify'
+import presetIcons from '@unocss/preset-icons'
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
@@ -23,6 +26,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
+      '@/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
   plugins: [
@@ -60,34 +64,40 @@ export default defineConfig({
 
       // custom resolvers
       resolvers: [
-        // auto import icons
-        // https://github.com/antfu/unplugin-icons
-        IconsResolver({
-          componentPrefix: '',
-          // enabledCollections: ['carbon']
-        }),
+        ElementPlusResolver(),
+        // // auto import icons
+        // // https://github.com/antfu/unplugin-icons
+        // IconsResolver({
+        //   componentPrefix: '',
+        //   // enabledCollections: ['carbon']
+        // }),
       ],
 
       dts: 'src/components.d.ts',
     }),
 
-    // https://github.com/antfu/unplugin-icons
-    Icons({
-      autoInstall: true,
-    }),
-
-    // https://github.com/antfu/vite-plugin-windicss
-    WindiCSS({
-      safelist: markdownWrapperClasses,
-    }),
-    // Unocss({
-    //   presets: [
-    //     presetUno(),
-    //   ],
+    // // https://github.com/antfu/unplugin-icons
+    // Icons({
+    //   autoInstall: true,
     // }),
 
+    // // https://github.com/antfu/vite-plugin-windicss
+    // WindiCSS({
+    //   safelist: markdownWrapperClasses,
+    // }),
+    Unocss({
+      presets: [
+        presetUno(),
+        presetIcons({
+          extraProperties: {
+            display: 'inline-block',
+          },
+        }),
+        presetAttributify({ /* options */ }),
+      ],
+    }),
+
     // https://github.com/antfu/vite-plugin-md
-    // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
     Markdown({
       wrapperClasses: markdownWrapperClasses,
       headEnabled: true,
@@ -109,8 +119,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Vitesse',
-        short_name: 'Vitesse',
+        name: 'NFCmon',
+        short_name: 'NFCmon',
         theme_color: '#ffffff',
         icons: [
           {
@@ -143,7 +153,7 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-inspect
     Inspect({
       // change this to enable inspect for debugging
-      enabled: false,
+      enabled: true,
     }),
   ],
 

@@ -1,8 +1,9 @@
-export function useNFC(): Ref<boolean> {
+export function useNFC() {
   const nfcAble = ref(false)
   let retries = 0
   do {
-    if ('NDEFReader' in window)
+    // navigator
+    if (window && 'NDEFReader' in window)
       nfcAble.value = true
 
     setTimeout(() => {
