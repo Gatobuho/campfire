@@ -64,6 +64,7 @@ export enum TrainerClasses {
 export interface ClassMods {
   [string: TrainerClasses]: TrainerStats
 }
+
 export const classes: ClassMods = {
   [TrainerClasses.ACE]: {
     body: {

@@ -29,6 +29,7 @@ declare module 'vue' {
     MonCard: typeof import('./components/MonCard.vue')['default']
     MonFooter: typeof import('./components/MonFooter.vue')['default']
     README: typeof import('./components/README.md')['default']
+    TrainerImg: typeof import('./components/TrainerImg.vue')['default']
   }
 }
 

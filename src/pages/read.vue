@@ -40,7 +40,7 @@ const readAllNFC = async() => {
   })
 }
 
-if ('NDEFReader' in window) {
+if (typeof window !== 'undefined' && window && 'NDEFReader' in window) {
   canNFC.value = true
   readAllNFC()
 }
@@ -59,6 +59,7 @@ const { t } = useI18n()
       </div>
       <div v-else>
         <em class="text-sm opacity-75">{{ t('no-nfc') }}</em>
+        <em class="text-sm opacity-75">{{ t('intro.dynamic-route') }}</em>
       </div>
 
       <div class="m-4">

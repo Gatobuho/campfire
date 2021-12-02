@@ -66,7 +66,7 @@ const isOnDex = (PokeId: number) => {
   return dex.find((p: Pokemon) => p.id === PokeId)
 }
 
-if ('NDEFReader' in window) {
+if (typeof window !== 'undefined' && window && 'NDEFReader' in window) {
   canNFC.value = true
   console.log(window.NDEFReader)
 }

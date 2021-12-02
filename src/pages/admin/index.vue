@@ -1,46 +1,11 @@
 <script setup lang="ts">
-import { Pokemon, Trainer, Pokedex, classes } from '@/types'
-import * as pokeData from '@/logic/pokes2.json'
-const activeName = ref('first')
-const pokedex: Ref<Pokedex> = ref({
-  trainer: {},
-  party: [],
-  money: 0,
-  badges: [],
-  bag: [],
-})
-const trainerClasses = { ...classes }
-// const trainerClasses = [
-//   'Ace Trainer',
-//   'Backpacker',
-//   'Beauty',
-//   'Biker',
-//   'Bird Keeper',
-//   'Black Belt',
-//   'Breeder',
-//   'Bug Catcher',
-//   'Burglar',
-//   'Channeler',
-//   'Chef',
-//   'Dragon Tamer',
-//   'Fisherman',
-//   'Gambler',
-//   'Juggler',
-//   'Lass',
-//   'Youngster',
-//   'Musician',
-//   'Pokefan',
-//   'Pokemaniac',
-//   'Psychic',
-//   'Sage',
-//   'Scientist',
-//   'Surfer',
-//   'Custom',
-// ]
-const trainer: Ref<Trainer> = ref({
+import { Pokemon, Trainer, Pokedex } from '@/types'
+const activeName = ref('trainer')
+const activeAcordion = ref('trainer')
+const trainer: Trainer = ref({
   id: 0,
   name: 'Pancho',
-  img: 'https://archives.bulbagarden.net/media/upload/thumb/b/b5/VSAlder.png/120px-VSAlder.png',
+  img: 'Trainer_88',
   class: null,
   stats: {
     body: {
@@ -63,66 +28,49 @@ const trainer: Ref<Trainer> = ref({
     },
   },
 })
-// const pokemons: Pokemon[] = [
-//   {
-//     name: 'Bulbasaur',
-//     id: 1,
-//     img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-//     type: 'grass',
-//   },
-//   {
-//     name: 'Charmander',
-//     id: 4,
-//     img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
-//     type: 'fire',
-//   },
-//   {
-//     name: 'Squirtle',
-//     id: 7,
-//     img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png',
-//     type: 'water',
-//   },
-//   {
-//     name: 'Pikachu',
-//     id: 25,
-//     img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
-//     type: 'electric',
-//   },
-//   {
-//     name: 'Eevee',
-//     id: 133,
-//     img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png',
-//     type: 'normal',
-//   },
-//   {
-//     name: 'Jigglypuff',
-//     id: 39,
-//     img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png',
-//     type: 'normal',
-//   },
-//   {
-//     name: 'Mew',
-//     id: 151,
-//     img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png',
-//     type: 'psychic',
-//   },
-//   {
-//     name: 'Mewtwo',
-//     id: 150,
-//     img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png',
-//     type: 'psychic',
-//   },
-// ]
-console.log(pokeData)
-const canNFC = ref(true)
+const pokedex: Pokedex = ref({
+  trainer,
+  party: [],
+  money: 0,
+  badges: [],
+  bag: [],
+})
+// const trainerClasses = { ...classes }
+const trainerClasses = [
+  'Ace Trainer',
+  'Backpacker',
+  'Beauty',
+  'Biker',
+  'Bird Keeper',
+  'Black Belt',
+  'Breeder',
+  'Bug Catcher',
+  'Burglar',
+  'Channeler',
+  'Chef',
+  'Dragon Tamer',
+  'Fisherman',
+  'Gambler',
+  'Juggler',
+  'Lass',
+  'Youngster',
+  'Musician',
+  'Pokefan',
+  'Pokemaniac',
+  'Psychic',
+  'Sage',
+  'Scientist',
+  'Surfer',
+  'Custom',
+]
+
+const canNFC = ref(false)
 const NFCMsg = ref('')
 
-if ('NDEFReader' in window) {
+if (typeof window !== 'undefined' && window && 'NDEFReader' in window) {
   canNFC.value = true
   console.log(window.NDEFReader)
 }
-
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 const writeNFCURL = async() => {
   NFCMsg.value = 'Preparing to write'
@@ -232,49 +180,24 @@ const removePokemon = (pokemon: Pokemon) => {
 const addTrainer = () => {
   pokedex.value.trainer = { ...trainer.value }
 }
+
+const handleClick = (e) => {
+  console.log(e)
+}
 </script>
 
 <template>
   <main>
-    <div class="max-w-4xl mx-auto">
-      <p class="text-4xl mb-8">
-        <strong class="font-bold">NFC</strong>
-        <span class="text-2xl">Dex</span>
-      </p>
+    <section class="max-w-300 mx-auto px-8">
       <div v-if="canNFC" class="flex justify-center items-center gap-4 flex-wrap">
-        <button class="rounded border px-6 py-2" @click="writeNFC()">
-          Write
-        </button>
-        <button class="rounded border px-6 py-2" @click="writeNFCURL()">
-          Buba!
-        </button>
-        <button class="rounded border px-6 py-2" @click="readNFC()">
-          Read
-        </button>
-        <button class="rounded border px-6 py-2" @click="readAllNFC()">
-          Read All
-        </button>
+        <em class="text-sm opacity-75">{{ t('nfc-able') }}</em>
       </div>
-      <div v-else>
+      <div v-else class="w-full text-center">
         <em class="text-sm opacity-75">{{ t('no-nfc') }}</em>
       </div>
 
-      <div class="m-4">
-        {{ NFCMsg }}
-      </div>
-      <!-- A basic anchor icon from Phosphor icons -->
-      <div class="i-ph-anchor-simple-thin" />
-      <!-- An orange alarm from Material Design Icons -->
-      <div class="i-mdi-alarm text-orange-400" />
-      <!-- A large Vue logo -->
-      <div class="i-logos-vue text-3xl" />
-      <!-- Sun in light mode, Moon in dark mode, from Carbon -->
-      <button class="i-carbon-sun dark:i-carbon-moon" />
-      <!-- Twemoji of laugh, turns to tear on hovering -->
-      <div class="i-twemoji-grinning-face-with-smiling-eyes hover:i-twemoji-face-with-tears-of-joy" />
-
-      <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="Trainer" name="first">
+      <el-tabs v-model="activeName" class="text-white" @tab-click="handleClick">
+        <el-tab-pane label="Trainer" name="trainer">
           <el-select v-model="trainer.class" filterable placeholder="Select">
             <el-option
               v-for="tCls in trainerClasses"
@@ -284,18 +207,44 @@ const addTrainer = () => {
             >
             </el-option>
           </el-select>
+          <el-collapse v-model="activeAcordion" accordion class="text-white">
+            <el-collapse-item name="pokedex">
+              <template #title>
+                <h2 class="font-bold text-xl  px-2">
+                  Pokedex
+                </h2>
+              </template>
+              <div v-for="(value, key) in pokedex" :key="key" class="px-4 mb-2 font-bold">
+                {{ key }}: {{ value }}
+              </div>
+            </el-collapse-item>
+            <el-collapse-item name="trainer">
+              <template #title>
+                <h2 class="font-bold text-xl  px-2">
+                  Trainer
+                </h2>
+              </template>
+              <el-form ref="form" :model="trainer" label-width="120px">
+                <el-form-item v-for="(value, key) in trainer" :key="key" :label="key">
+                  <el-input v-model="trainer[key]">
+                    {{ value }}
+                  </el-input>
+                </el-form-item>
+              </el-form>
+            </el-collapse-item>
+          </el-collapse>
         </el-tab-pane>
-        <el-tab-pane label="Config" name="second">
+        <el-tab-pane label="Config" name="config">
           Config
         </el-tab-pane>
-        <el-tab-pane label="Role" name="third">
+        <el-tab-pane label="Role" name="role">
           Role
         </el-tab-pane>
-        <el-tab-pane label="Task" name="fourth">
+        <el-tab-pane label="Task" name="task">
           Task
         </el-tab-pane>
       </el-tabs>
-    </div>
+    </section>
   </main>
 </template>
 

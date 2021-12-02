@@ -15,6 +15,11 @@ intro:
 mon:
   moves: Movimientos
   type_desc: Icono del tipo
+nfc:
+  NFCMsg: Mensaje NFC
+  canNFC: Puede NFC
+  nfcReader: Lectora NFC
+nfc-able: Habilitar NFC
 no-nfc: No puedo usar NFC
 not-found: No se ha encontrado
 player:

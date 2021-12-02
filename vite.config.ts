@@ -6,9 +6,10 @@ import Layouts from 'vite-plugin-vue-layouts'
 // import Icons from 'unplugin-icons/vite'
 // import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Markdown from 'vite-plugin-md'
+import styleImport from 'vite-plugin-style-import'
 // import WindiCSS from 'vite-plugin-windicss'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
@@ -19,6 +20,7 @@ import Unocss from 'unocss/vite'
 import { presetUno } from 'unocss'
 import presetAttributify from '@unocss/preset-attributify'
 import presetIcons from '@unocss/preset-icons'
+import mix from 'vite-plugin-mix'
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
@@ -53,7 +55,20 @@ export default defineConfig({
       ],
       dts: 'src/auto-imports.d.ts',
     }),
-
+    styleImport({
+      libs: [{
+        libraryName: 'element-plus',
+        esModule: true,
+        ensureStyleFile: true,
+        resolveStyle: (name) => {
+          name = name.slice(3)
+          return `element-plus/packages/theme-chalk/src/${name}.scss`
+        },
+        resolveComponent: (name) => {
+          return `element-plus/lib/${name}`
+        },
+      }],
+    }),
     // https://github.com/antfu/unplugin-vue-components
     Components({
       // allow auto load markdown components under `./src/components/`
@@ -64,7 +79,7 @@ export default defineConfig({
 
       // custom resolvers
       resolvers: [
-        ElementPlusResolver(),
+        // ElementPlusResolver(),
         // // auto import icons
         // // https://github.com/antfu/unplugin-icons
         // IconsResolver({
@@ -149,7 +164,9 @@ export default defineConfig({
       compositionOnly: true,
       include: [path.resolve(__dirname, 'locales/**')],
     }),
-
+    mix({
+      handler: './api.js',
+    }),
     // https://github.com/antfu/vite-plugin-inspect
     Inspect({
       // change this to enable inspect for debugging
