@@ -15,6 +15,7 @@ const { text: result, copy, copied, isSupported } = useClipboard({ source: link 
     <p v-if="isSupported">
       No me podes usar
     </p>
+    <span class="i-ant-design:smile-filled w-20 h-20 text-green-600 hover:i-ant-design:smile-twotone hover:text-red-600 hover:w-20 hover:h-20"></span>
     <el-input v-model="phone" placeholder="tu telefono" clearable />
     <el-input v-model="text" placeholder="El texto" clearable />
     <div class="flex justify-end">
