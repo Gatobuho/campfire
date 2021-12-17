@@ -110,6 +110,12 @@ export default defineConfig({
         }),
         presetAttributify({ /* options */ }),
       ],
+      rules: [
+        // https://codepen.io/peruvianidol/full/1ef232a3401bca5717bb7d36d295fd4f
+        // Palett makes
+        // https://video.twimg.com/tweet_video/FE2Ef5OakAAd6x5.mp4
+        [/^grid-minmax-(.+)$/, ([, d]) => ({ 'grid-template-columns': `repeat(auto-fit, minmax(${d}, 1fr))` })],
+      ],
     }),
 
     // https://github.com/antfu/vite-plugin-md

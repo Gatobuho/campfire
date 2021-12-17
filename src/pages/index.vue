@@ -22,6 +22,11 @@ useNFC()
   <div class="core inset-0 fixed flex justify-center items-center">
     <span class="core w-20 h-20 rounded-full bg-blue-400 border-4 border-blue-600 shadow"></span>
   </div> -->
+  <PokeMainHeader />
+  <PokeHeader />
+  <section class="grid grid-minmax-15rem gap-4">
+    <div v-for="i in 10" :key="i" class="rounded bg-teal-600 h-20" />
+  </section>
   <main>
     {{ canNFC }}
   </main>
