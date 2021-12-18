@@ -1,39 +1,27 @@
 <script setup lang="ts">
-const canNFC = ref(false)
-const NFCMsg = ref('')
-const useNFC = () => {
-  if (typeof window !== 'undefined' && window && 'NDEFReader' in window) {
-    canNFC.value = true
-    console.log('NFC is supported')
-  }
-}
 fetch('/api/hello')
   .then((response) => {
     console.log(response)
     return response.json()
   })
   .then(json => console.log(json))
-useNFC()
+const { t } = useI18n()
 </script>
 
 <template>
-  <!-- <div class="upper w-full bg-gray-600 border-b-2 border-gray-800 h-50vh fixed inset-x-0 top-0"></div>
-  <div class="lowwer w-full bg-gray-600 border-t-2 border-gray-800 h-50vh fixed inset-x-0 bottom-0"></div>
-  <div class="core inset-0 fixed flex justify-center items-center">
-    <span class="core w-20 h-20 rounded-full bg-blue-400 border-4 border-blue-600 shadow"></span>
-  </div> -->
-  <PokeMainHeader />
-  <PokeHeader />
-  <section class="grid grid-minmax-15rem gap-4">
-    <div v-for="i in 10" :key="i" class="rounded bg-teal-600 h-20" />
+  <section class="grid grid-minmax-15rem gap-4 max-w-300 mx-auto">
+    <router-link to="/blogs/main" class="rounded bg-gradient-to-tr from-rose-400 to-rose-500 dark:from-indigo-400 dark:to-indigo-300 h-20 shadow-xl shadow-rose-500/50 dark:shadow-indigo-500/75 text-rose-900 dark:text-indigo-50 px-4 pt-3">
+      <h2 class="text-xl font-bold">
+        Articulo
+      </h2>
+      <p> Un pequeño articulo de prueba</p>
+    </router-link>
+    <button
+      class="btn m-3 text-sm mt-8"
+      @click="router.back()"
+    >
+      {{ t('button.back') }}
+    </button>
+    <div v-for="i in 10" :key="i" class="rounded bg-gradient-to-tr from-rose-400 to-rose-500 dark:from-indigo-400 dark:to-indigo-300 h-20 shadow-xl shadow-rose-500/50 dark:shadow-indigo-500/75" />
   </section>
-  <main>
-    {{ canNFC }}
-  </main>
 </template>
-
-<style scoped>
-  .dex-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-</style>

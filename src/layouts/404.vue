@@ -4,16 +4,12 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <main class="px-4 py-10 text-center text-teal-700 dark:text-gray-200">
-    <div>
-      <p class="text-4xl">
-        <carbon-warning class="inline-block" />
-      </p>
-    </div>
+  <main class="px-4 py-10 text-center text-teal-700 dark:text-stone-200 bg-stone-200 dark:bg-stone-800">
+    <div class="text-8xl i-mdi:all-inclusive" />
     <router-view />
     <div>
       <button
-        class="btn m-3 text-sm mt-8"
+        class="border rounded-xl shadow shadow-teal-300/50 dark:shadow-stone-200/50 hover:shadow-xl px-8 py-2 m-3 text-sm mt-8 transition"
         @click="router.back()"
       >
         {{ t('button.back') }}

@@ -1,16 +1,34 @@
 <script setup lang="ts">
+const APP_TITLE = import.meta.env.VITE_APP_NAME
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+const { t, locale } = useI18n()
+const toggleLang = () => {
+  locale.value = locale.value === 'en' ? 'es' : 'en'
+}
 </script>
 <template>
-  <el-container class="h-full text-gray-700 dark:text-gray-200 dark:bg-gray-900">
-    <el-header class="bg-gray-300 dark:bg-gray-700">
-      <nav class="flex items-center justify-between flex-wrap max-w-300 mx-auto">
-        <router-link to="/" class="flex items-center flex-shrink-0 text-white mr-6 px-6 py-2">
-          <img class="w-8 h-8 m-2" src="/iconx2.png" alt="a stialized generic mon icon">
-          <h1 class="font-semibold text-xl tracking-tight">
-            <strong>NFC</strong>
-            <span>mon</span>
+  <el-container class="h-full text-stone-700 bg-stone-50 dark:text-stone-200  dark:bg-stone-700">
+    <el-header class="bg-gradient-to-r from-rose-500 to-amber-400 dark:from-rose-800 dark:to-indigo-500 flex justify-center items-center">
+      <nav class="flex items-center justify-between max-w-300 mx-auto w-full text-stone-600 dark:text-stone-50">
+        <router-link to="/" class="flex items-center flex-shrink-0 py-2">
+          <h1 class="font-semibold text-xl tracking-tight flex items-center gap-2">
+            <div class="i-mdi:campfire" />
+            <strong>{{ APP_TITLE || 'Campfire' }}</strong>
           </h1>
         </router-link>
+        <ul class="flex justify-end items-center gap-4 text-2xl">
+          <li>
+            <button type="button" :title="t('button.toggle_dark')" @click="toggleDark()">
+              <i class="i-mdi:weather-night dark:i-mdi:white-balance-sunny"></i>
+            </button>
+          </li>
+          <li>
+            <button type="button" :title="t('button.toggle_langs')" @click="toggleLang()">
+              <i class="i-mdi:web"></i>
+            </button>
+          </li>
+        </ul>
       </nav>
     </el-header>
     <el-main>

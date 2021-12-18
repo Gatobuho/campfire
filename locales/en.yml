@@ -6,24 +6,4 @@ button:
   home: Home
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
-intro:
-  aka: Also known as
-  desc: Opinionated Vite Starter Template
-  dynamic-route: Demo of dynamic route
-  hi: Hi, {name}!
-  whats-your-name: What's your name?
-mon:
-  moves: Moves
-  type_desc: Type icon for
-nfc:
-  NFCMsg: NFC MSG
-  canNFC: Can NFC
-  nfcReader: NFC Reader
-nfc-able: NFC enable
-no-nfc: Not able to use NFC
-not-found: Not found
-player:
-  class: Class
-  image: Image
-  name: Name
-  new: New Player
+not-found: Not Found

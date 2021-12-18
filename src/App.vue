@@ -8,5 +8,5 @@ useHead({
 </script>
 
 <template>
-  <router-view min-h-screen class="min-h-screen" />
+  <router-view class="min-h-screen" />
 </template>

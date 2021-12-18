@@ -3,14 +3,10 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
-// import Icons from 'unplugin-icons/vite'
-// import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
-// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Markdown from 'vite-plugin-md'
 import styleImport from 'vite-plugin-style-import'
-// import WindiCSS from 'vite-plugin-windicss'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Inspect from 'vite-plugin-inspect'
@@ -22,7 +18,7 @@ import presetAttributify from '@unocss/preset-attributify'
 import presetIcons from '@unocss/preset-icons'
 import mix from 'vite-plugin-mix'
 
-const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
+const markdownWrapperClasses = 'prose prose-stone mx-auto prose-headings:text-rose-600 dark:prose-headings:text-indigo-400 prose-pre:bg-stone-800 dark:prose-invert prose-a:text-indigo-600 dark:prose-a:text-indigo-400 prose-a:hover:text-indigo-700 prose-a:focus:text-indigo-700'
 
 export default defineConfig({
   resolve: {
@@ -35,15 +31,12 @@ export default defineConfig({
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),
-
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
       extensions: ['vue', 'md'],
     }),
-
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
-
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: [
@@ -73,33 +66,12 @@ export default defineConfig({
     Components({
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue', 'md'],
-
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-
       // custom resolvers
-      resolvers: [
-        // ElementPlusResolver(),
-        // // auto import icons
-        // // https://github.com/antfu/unplugin-icons
-        // IconsResolver({
-        //   componentPrefix: '',
-        //   // enabledCollections: ['carbon']
-        // }),
-      ],
-
+      resolvers: [],
       dts: 'src/components.d.ts',
     }),
-
-    // // https://github.com/antfu/unplugin-icons
-    // Icons({
-    //   autoInstall: true,
-    // }),
-
-    // // https://github.com/antfu/vite-plugin-windicss
-    // WindiCSS({
-    //   safelist: markdownWrapperClasses,
-    // }),
     Unocss({
       presets: [
         presetUno(),
@@ -117,7 +89,6 @@ export default defineConfig({
         [/^grid-minmax-(.+)$/, ([, d]) => ({ 'grid-template-columns': `repeat(auto-fit, minmax(${d}, 1fr))` })],
       ],
     }),
-
     // https://github.com/antfu/vite-plugin-md
     Markdown({
       wrapperClasses: markdownWrapperClasses,
@@ -134,7 +105,6 @@ export default defineConfig({
         })
       },
     }),
-
     // https://github.com/antfu/vite-plugin-pwa
     VitePWA({
       registerType: 'autoUpdate',
@@ -163,7 +133,6 @@ export default defineConfig({
         ],
       },
     }),
-
     // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
     VueI18n({
       runtimeOnly: true,
@@ -171,7 +140,7 @@ export default defineConfig({
       include: [path.resolve(__dirname, 'locales/**')],
     }),
     mix({
-      handler: './api.js',
+      handler: './server/index.ts',
     }),
     // https://github.com/antfu/vite-plugin-inspect
     Inspect({
@@ -179,20 +148,17 @@ export default defineConfig({
       enabled: true,
     }),
   ],
-
   server: {
     fs: {
       strict: true,
     },
     host: true,
   },
-
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
   },
-
   optimizeDeps: {
     include: [
       'vue',
