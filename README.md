@@ -90,51 +90,37 @@ Basado en [Vitesse](https://github.com/antfu/vitesse)
 - [vitesse-nuxt](https://github.com/antfu/vitesse-nuxt) - Vitesse experience for Nuxt 2
 
 
-## Try it now!
+## Apro Barlo
 
 ### GitHub Template
 
-[Create a repo from this template on GitHub](https://github.com/antfu/vitesse/generate).
-
-### Clone to local
-
-If you prefer to do it manually with the cleaner git history
+[Crear un proyecto con esto como base](https://github.com/Gatobuho/campfire/generate).
 
 ```bash
-npx degit antfu/vitesse my-vitesse-app
-cd my-vitesse-app
-pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
+pnpm i
 ```
 
-## Checklist
+## Cosas a hacer
 
-When you use this template, try follow the checklist to update your info properly
+Cuando usas este template recomiendo que sigas estos pasos;
 
-- [ ] Rename `name` field in `package.json`
-- [ ] Change the author name in `LICENSE`
-- [ ] Change the title in `App.vue`
-- [ ] Change the favicon in `public`
-- [ ] Remove the `.github` folder which contains the funding info
-- [ ] Clean up the READMEs and remove routes
-
-And, enjoy :)
-
-## Usage
-
-### Development
-
-Just run and visit http://localhost:3333
+- [ ] Cambiar `name` en `package.json`
+- [ ] Cambiar un poco el `App.vue`
+- [ ] Cambiar el favicon en `public`
+- [ ] Borrar este README
 
 ```bash
-pnpm dev
+pnpm run dev
 ```
+
+A disfrutat (:
 
 ### Build
 
-To build the App, run
+Construir el App
 
 ```bash
 pnpm build
 ```
 
-And you will see the generated file in `dist` that ready to be served.
+y despues servis el `dist`.
