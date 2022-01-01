@@ -115,6 +115,9 @@ Cuando usas este template recomiendo que sigas estos pasos;
 pnpm run dev
 ```
 
+Mantener el template base actualizado:
+[https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository](https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository)
+
 A disfrutat (:
 
 ### Build
