@@ -30,7 +30,7 @@ Basado en [Vitesse](https://github.com/antfu/vitesse)
 
 - 🖨 (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg)
 
-- ⚙️ (Testing) via [vitest](https://vitest.dev/)
+- ⚙️ Testing via [vitest](https://vitest.dev/)
 
 - 🦔 Critical CSS via [critters](https://github.com/GoogleChromeLabs/critters)
 
