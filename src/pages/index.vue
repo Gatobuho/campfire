@@ -1,14 +1,21 @@
 <script setup lang="ts">
+const data = ref(null)
 fetch('/api/hello')
   .then((response) => {
     console.log(response)
     return response.json()
   })
-  .then(json => console.log(json))
+  .then((json) => {
+    console.log(json)
+    data.value = json
+  })
 const { t } = useI18n()
 </script>
 
 <template>
+  <header v-if="data?.hello" class="text-yellow-600">
+    <h1>Hello {{ data?.hello }}</h1>
+  </header>
   <section class="grid grid-minmax-15rem gap-4 max-w-300 mx-auto">
     <router-link to="/blogs/main" class="rounded bg-gradient-to-tr from-rose-400 to-rose-500 dark:from-indigo-400 dark:to-indigo-300 h-20 shadow-xl shadow-rose-500/50 dark:shadow-indigo-500/75 text-rose-900 dark:text-indigo-50 px-4 pt-3">
       <h2 class="text-xl font-bold">

@@ -30,6 +30,8 @@ Basado en [Vitesse](https://github.com/antfu/vitesse)
 
 - 🖨 (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg)
 
+- ⚙️ (Testing) via [vitest](https://vitest.dev/)
+
 - 🦔 Critical CSS via [critters](https://github.com/GoogleChromeLabs/critters)
 
 - 🦾 TypeScript
@@ -83,7 +85,7 @@ Basado en [Vitesse](https://github.com/antfu/vitesse)
   - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally) - All in one i18n support
   - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-###### Official
+#### Official
 
 - [**vitesse-lite**](https://github.com/antfu/vitesse-lite) - Lightweight version of Vitesse
 - [**vitesse-webext**](https://github.com/antfu/vitesse-webext) - WebExtension Vite starter template
