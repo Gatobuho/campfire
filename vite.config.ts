@@ -110,8 +110,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'NFCmon',
-        short_name: 'NFCmon',
+        name: 'Campfire App',
+        short_name: 'Campfire',
         theme_color: '#ffffff',
         icons: [
           {
