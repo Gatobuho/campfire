@@ -115,7 +115,17 @@ Cuando usas este template recomiendo que sigas estos pasos;
 pnpm run dev
 ```
 
-Mantener el template base actualizado:
+
+### Mantener el template base actualizado
+
+```bash
+git remote add template https://github.com/Gatobuho/campfire.git
+
+git fetch --all
+
+git rebase template/main
+```
+
 [https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository](https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository)
 
 A disfrutat (:
